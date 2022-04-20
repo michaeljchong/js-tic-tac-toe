@@ -1,6 +1,6 @@
-<h1>Title</h1>
+<h1>Tic Tac Toe</h1>
 
-<p>description. Check out the <a href=''>final product</a>.</p>
+<p>Javascript practice to get familiar with using factory functions and IIFE. Check out the <a href=''>final product</a>.</p>
 
 <h2>Lesson's Learned:</h2>
 <ul>
