@@ -27,6 +27,11 @@ function GameController(
 ) {
   const board = GameBoard();
 
+  const players = [
+    Player(playerOneName, 'X'),
+    Player(playerTwoName, 'O')
+  ]
+
   return {};
 };
 
