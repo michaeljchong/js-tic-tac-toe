@@ -48,6 +48,20 @@ function GameController(
     [0, 4, 8],
     [2, 4, 6]
   ];
+
+  const checkWin = () => {
+    for (let i = 0; i < winningConditions.length; i++) {
+      condition = winningConditions[i];
+      a = board.getBoard()[condition[0]];
+      b = board.getBoard()[condition[1]];
+      c = board.getBoard()[condition[2]];
+      if (!a || !b || !c) continue;
+      if (a == b && b == c) {
+        return true;
+      };
+    };
+    false;
+  };
 };
 
 function Player(name, marker) {
