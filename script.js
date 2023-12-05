@@ -32,6 +32,12 @@ function GameController(
     Player(playerTwoName, 'O')
   ]
 
+  let currentPlayer = players[0]
+
+  const switchPlayer = () => {
+    currentPlayer = currentPlayer == players[0] ? players[1] : players[0];
+  };
+
   return {};
 };
 
