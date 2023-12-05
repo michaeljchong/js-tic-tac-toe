@@ -27,5 +27,8 @@ function GameController() {
 };
 
 function Player(name, marker) {
+  const playerName = name;
+  const playerMarker = marker;
 
+  return {playerName, playerMarker};
 };
