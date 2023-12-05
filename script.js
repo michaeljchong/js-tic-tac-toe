@@ -98,3 +98,6 @@ function Player(name, marker) {
 
   return {playerName, playerMarker};
 };
+
+g = new GameController();
+g.playGame();
