@@ -22,7 +22,9 @@ function GameBoard() {
   return {getBoard, checkAvailable, markCell, printBoard};
 };
 
-function GameController() {
+function GameController(
+  playerOneName = "Player One", playerTwoName = "Player Two"
+) {
   const board = GameBoard();
 
   return {};
