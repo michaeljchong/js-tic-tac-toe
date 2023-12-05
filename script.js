@@ -80,6 +80,16 @@ function GameController(
       switchPlayer();
     };
   };
+
+  const playGame = () => {
+    board.printBoard();
+    while (board.checkAvailable()) {
+      if (playRound()) return;
+    };
+    console.log(`This match ended in a tie.`);
+  };
+
+  return {playGame};
 };
 
 function Player(name, marker) {
