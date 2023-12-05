@@ -23,7 +23,9 @@ function GameBoard() {
 };
 
 function GameController() {
+  const board = GameBoard();
 
+  return {};
 };
 
 function Player(name, marker) {
