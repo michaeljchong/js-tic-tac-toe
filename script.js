@@ -5,11 +5,21 @@ function GameBoard() {
 
   const getBoard = () => board;
 
+  const checkAvailable = () => board.includes(0);
+
+  const markCell = (cell, mark) => {
+    if (board[cell] == 0) {
+      board[cell] = mark;
+      return true;
+    };
+    return false;
+  };
+
   const printBoard = () => {
     console.log(board);
   };
 
-  return {getBoard, printBoard};
+  return {getBoard, checkAvailable, markCell, printBoard};
 };
 
 function GameController() {
