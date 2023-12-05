@@ -62,6 +62,24 @@ function GameController(
     };
     false;
   };
+
+  const playRound = (cell) => {
+    let validInput = false;
+    while (!validInput) {
+      const input = prompt(`${currentPlayer.playerName}, which cell would you like to mark?`);
+      // Insert code here to verify input is a number 0-9
+      validInput = board.markCell(input, currentPlayer.playerMarker);
+      if (!validInput) console.log("That cell is already occupied, please make a different move.")
+    }
+    board.printBoard();
+    if (checkWin()) {
+      console.log(`${currentPlayer.playerName} has won this match!`);
+      return true;
+    }
+    else {
+      switchPlayer();
+    };
+  };
 };
 
 function Player(name, marker) {
