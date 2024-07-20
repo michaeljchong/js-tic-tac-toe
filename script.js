@@ -1,4 +1,4 @@
-function GameBoard() {
+const gameBoard = (function () {
   // Board is an array with row 1 being indexes 0-2, row 2 being indexes 3-5, row 3 being indexes 6-8
   const board = Array(9);
   board.fill(0);
@@ -16,17 +16,18 @@ function GameBoard() {
   };
 
   const printBoard = () => {
-    console.log(board);
+    console.log(board.slice(0,3));
+    console.log(board.slice(3,6));
+    console.log(board.slice(6,9));
   };
 
   return {getBoard, checkAvailable, markCell, printBoard};
-};
+})();
 
-function GameController(
-  playerOneName = "Player One", playerTwoName = "Player Two"
+const gameController = (function (
+  playerOneName = "Player One",
+  playerTwoName = "Player Two"
 ) {
-  const board = GameBoard();
-
   const players = [
     Player(playerOneName, 'X'),
     Player(playerTwoName, 'O')
@@ -52,9 +53,9 @@ function GameController(
   const checkWin = () => {
     for (let i = 0; i < winningConditions.length; i++) {
       condition = winningConditions[i];
-      a = board.getBoard()[condition[0]];
-      b = board.getBoard()[condition[1]];
-      c = board.getBoard()[condition[2]];
+      a = gameBoard.getBoard()[condition[0]];
+      b = gameBoard.getBoard()[condition[1]];
+      c = gameBoard.getBoard()[condition[2]];
       if (!a || !b || !c) continue;
       if (a == b && b == c) {
         return true;
@@ -66,12 +67,16 @@ function GameController(
   const playRound = (cell) => {
     let validInput = false;
     while (!validInput) {
-      const input = prompt(`${currentPlayer.playerName}, which cell would you like to mark?`);
-      // Insert code here to verify input is a number 0-9
-      validInput = board.markCell(input, currentPlayer.playerMarker);
-      if (!validInput) console.log("That cell is already occupied, please make a different move.")
+      const input = parseInt(prompt(`${currentPlayer.playerName}, which cell would you like to mark?`));
+      if (![...Array(9).keys()].includes(input)) {
+        console.log("Invalid input, please enter a number from 1-9.");
+        continue;
+      }
+      validInput = gameBoard.markCell(input, currentPlayer.playerMarker);
+      if (!validInput) console.log("That cell is already occupied, please make a different move.");
     }
-    board.printBoard();
+
+    gameBoard.printBoard();
     if (checkWin()) {
       console.log(`${currentPlayer.playerName} has won this match!`);
       return true;
@@ -82,15 +87,15 @@ function GameController(
   };
 
   const playGame = () => {
-    board.printBoard();
-    while (board.checkAvailable()) {
+    gameBoard.printBoard();
+    while (gameBoard.checkAvailable()) {
       if (playRound()) return;
     };
     console.log(`This match ended in a tie.`);
   };
 
   return {playGame};
-};
+})();
 
 function Player(name, marker) {
   const playerName = name;
@@ -99,5 +104,4 @@ function Player(name, marker) {
   return {playerName, playerMarker};
 };
 
-g = new GameController();
-g.playGame();
+gameController.playGame();
